@@ -35,7 +35,21 @@ def plot_geojson(geojson_data):
             if key not in label_attributes:
                 label_attributes.append(key)
         break
-    folium.features.GeoJsonPopup(fields=label_attributes, labels=True).add_to(geoj)
+
+    folium.features.GeoJsonPopup(
+        fields=label_attributes,
+        aliases=label_attributes,
+        localize=True,
+        labels=True,
+        style="""
+        background-color: #F0EFEF;
+        border: 2px solid black;
+        border-radius: 3px;
+        box-shadow: 3px;
+    """,
+        max_width=300,
+        max_height=200,
+    ).add_to(geoj)
     geoj.add_to(m)
 
     return m
