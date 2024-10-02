@@ -26,9 +26,17 @@ def plot_geojson(geojson_data):
 
     m = folium.Map(location=[center_lat, center_lon], zoom_start=10)
 
-    folium.GeoJson(geojson_data, name="geojson").add_to(m)
+    geoj = folium.GeoJson(geojson_data, name="geojson")
 
-    folium.LayerControl().add_to(m)
+    label_attributes = []
+    for feature in geojson_data["features"]:
+
+        for key, value in feature["properties"].items():
+            if key not in label_attributes:
+                label_attributes.append(key)
+        break
+    folium.features.GeoJsonPopup(fields=label_attributes, labels=True).add_to(geoj)
+    geoj.add_to(m)
 
     return m
 
