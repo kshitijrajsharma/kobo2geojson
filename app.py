@@ -83,7 +83,7 @@ def main():
                 if output_format == "GeoJSON":
                     result = convert_to_geojson(df, lat_col, lon_col)
                     output = json.dumps(result, indent=2)
-                    file_extension = "json"
+                    file_extension = "geojson"
                     mime_type = "application/json"
                     # elif output_format == "Shapefile":
                     #     output = df.to_csv(index=False)
